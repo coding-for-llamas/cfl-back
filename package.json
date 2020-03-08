@@ -18,7 +18,7 @@
     "cc": "codeclimate analyze -f html > codeclimate.html",
     "start:debug": "DEBUG=cfl-back:* nodemon index.js",
     "installglobals": "yarn global add npm@latest",
-    "postinstall": "./postinstallcflFront.sh",
+    "postinstall": "./postinstallcflFront.sh && ./postinstallcaringChildDaycare.sh",
     "dev": "nodemon index.js",
     "build:prod": "(cd cfl-front || exit; npm start -- build)",
     "start": "node index.js",
