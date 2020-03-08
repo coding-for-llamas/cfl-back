@@ -31,3 +31,4 @@ fi
 cd cfl-front;
 yarn install;
 )
+
