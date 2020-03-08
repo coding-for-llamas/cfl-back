@@ -1,0 +1,11 @@
+{
+  "resetMocks": true,
+  "verbose": true,
+  "bail": true,
+  "testPathIgnorePatterns": ["/node_modules/", "/test/mocha", "/cfl-front", "/caring-child-daycare", "/model"],
+  "collectCoverage": true,
+  "testEnvironment": "node",
+  "testURL": "http://localhost/",
+  "testRegex": "./test/jest/.*.js$",
+  "roots": ["<rootDir>/test/jest/"]
+}
