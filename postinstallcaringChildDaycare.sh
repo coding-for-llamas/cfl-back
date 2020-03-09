@@ -10,7 +10,7 @@ then
 fi
 
 if [ ! -d caring-child-daycare ]; then
-    (git clone https://github.com/coding-for-llamas/caring-child-daycare)
+    (git clone https://github.com/coding-for-llamas/caring-child-daycare.git)
 fi
 
 (

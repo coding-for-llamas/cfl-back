@@ -17,6 +17,7 @@
   "scripts": {
     "cc": "codeclimate analyze -f html > codeclimate.html",
     "start:debug": "DEBUG=cfl-back:* nodemon index.js",
+    "postinstall": "./postinstallcflFront.sh",
     "installglobals": "yarn global add npm@latest",
     "dev": "nodemon index.js",
     "build:prod": "(cd cfl-front || exit; npm start -- build)",
