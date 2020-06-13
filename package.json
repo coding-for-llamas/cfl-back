@@ -4,7 +4,7 @@
   "description": "Coding for Llamas backend",
   "main": "index.js",
   "engines": {
-    "node": ">14.0.0"
+    "node": ">14.3.0"
   },
   "files": [
     "lib/",
