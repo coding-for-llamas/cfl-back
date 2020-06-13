@@ -21,6 +21,7 @@ const app = express();
 /* istanbul ignore next */
 if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'master') app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(express.static(path.normalize(path.join(__dirname, 'cfl-front/dist'))));
+app.use('/daycare', express.static(path.normalize(path.join(__dirname, 'caring-child-daycare/dist'))));
 app.use(cors(corsOptions));
 mongoose.Promise = bluebird;
 let mongoDbUri = process.env.MONGO_DB_URI;

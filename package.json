@@ -1,6 +1,6 @@
 {
   "name": "cfl-back",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Coding for Llamas backend",
   "main": "index.js",
   "engines": {
