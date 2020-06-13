@@ -25,7 +25,10 @@ app.use(cors(corsOptions));
 mongoose.Promise = bluebird;
 let mongoDbUri = process.env.MONGO_DB_URI;
 /* istanbul ignore else */
-if (process.env.NODE_ENV === 'test') mongoDbUri = 'mongodb+srv://cfl_tester:cxC5q11zxqdKZ2SE@cluster0-mdr8z.gcp.mongodb.net/cfl-test?retryWrites=true&w=majority';
+if (process.env.NODE_ENV === 'test') {
+  mongoDbUri = 'mongodb+srv://cfl_tester:cxC5q11zxqdKZ2SE'
++ '@cluster0-mdr8z.gcp.mongodb.net/cfl-test?retryWrites=true&w=majority';
+}
 mongoose.connect(mongoDbUri, {
   useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true,
 });
