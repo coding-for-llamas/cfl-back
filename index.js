@@ -21,6 +21,7 @@ const app = express();
 /* istanbul ignore next */
 if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'master') app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(express.static(path.normalize(path.join(__dirname, 'cfl-front/dist'))));
+app.use('/daycare', express.static(path.normalize(path.join(__dirname, 'caring-child-daycare/dist'))));
 app.use(cors(corsOptions));
 mongoose.Promise = bluebird;
 let mongoDbUri = process.env.MONGO_DB_URI;
@@ -39,6 +40,12 @@ app.use(morgan('tiny'));
 routes(app);
 app.get('*', (req, res) => {
   res.sendFile(path.normalize(path.join(__dirname, 'cfl-front/dist/index.html')));
+});
+app.get('/daycare/*', (req, res) => {
+  res.sendFile(path.normalize(path.join(__dirname, 'caring-child-daycare/dist/index.html')));
+});
+app.get('*', (req, res) => {
+  res.sendFile(path.normalize(path.join(__dirname, 'frontend/dist/index.html')));
 });
 app.use((err, req, res) => {
   res.status(err.status || 500)
