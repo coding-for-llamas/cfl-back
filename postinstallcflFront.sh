@@ -10,7 +10,7 @@ then
 fi
 
 if [ ! -d cfl-front ]; then
-    (git clone https://github.com/coding-for-llamas/cfl-front)
+    (git clone https://github.com/coding-for-llamas/cfl-front.git)
 fi
 
 (

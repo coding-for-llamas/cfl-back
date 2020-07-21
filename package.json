@@ -1,10 +1,10 @@
 {
   "name": "cfl-back",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Coding for Llamas backend",
   "main": "index.js",
   "engines": {
-    "node": ">13.4.0"
+    "node": ">14.3.0"
   },
   "files": [
     "lib/",
@@ -17,8 +17,8 @@
   "scripts": {
     "cc": "codeclimate analyze -f html > codeclimate.html",
     "start:debug": "DEBUG=cfl-back:* nodemon index.js",
+    "postinstall": "./postinstallcflFront.sh && ./postinstallcaringChildDaycare.sh",
     "installglobals": "yarn global add npm@latest",
-    "postinstall": "./postinstallcflFront.sh",
     "dev": "nodemon index.js",
     "build:prod": "(cd cfl-front || exit; npm start -- build)",
     "start": "node index.js",
