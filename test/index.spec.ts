@@ -5,18 +5,17 @@ const AllowUrl = JSON.parse(process.env.AllowUrl || '{}');
 
 describe('Index test', () => {
   let allowedUrl: any, r, server: any, agent: any;
-  beforeAll((done) => {
-    server = app.listen(7000, (err) => {
-      if (err) return done(err);
+  beforeAll(() => new Promise((done) => {
+    server = app.listen(7000, () => {
       agent = request.agent(server);
       return done();
     });
-  });
-  beforeEach((done) => {
+  }));
+  beforeEach(() => new Promise((done) => {
     [allowedUrl] = AllowUrl.urls;
     done();
-  });
-  afterAll((done) => server && server.close(done));
+  }));
+  afterAll(() => new Promise((done) => server && server.close(done)));
   it('should return status 200 when use -> app.get', async () => {
     r = await agent
       .get('/anyrul')

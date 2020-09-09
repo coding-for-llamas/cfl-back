@@ -10,7 +10,7 @@ class InquiryController {
     this.sgMail = sgMail;
   }
 
-  sendGridEmail(bodyhtml: any, toemail: any, subjectline: any, res: any) {
+  sendGridEmail(bodyhtml: any, toemail: any, subjectline: any, res: any): void {
     this.sgMail.setApiKey(process.env.SENDGRID_API_KEY || /* istanbul ignore next */'');
     const msg = {
       to: toemail,
@@ -24,7 +24,7 @@ class InquiryController {
     return res.status(200).json({ message: 'email sent' });
   }
 
-  handleInquiry(req: any, res: any) { // eslint-disable-line class-methods-use-this
+  handleInquiry(req: any, res: any): void { // eslint-disable-line class-methods-use-this
     debug(req.body);
     return this.sendGridEmail(JSON.stringify(req.body), 'codingforllamas@gmail.com', 'inquiry', res);
   }
