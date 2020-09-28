@@ -1,5 +1,5 @@
 const path = require('path');
-const debug = require('debug')('web-jam-back:index');
+const debug = require('debug')('cfl-back:index');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
