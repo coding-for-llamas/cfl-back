@@ -1,24 +1,11 @@
 {
   "resetMocks": true,
-  "notify": true,
   "verbose": true,
   "bail": true,
-  "testPathIgnorePatterns": ["/node_modules/", "/build", "/cfl-front", "/caring-child-daycare"],
-  "collectCoverageFrom": [
-    "src/**/*.{js,jsx,ts,tsx}"
-  ],
+  "testPathIgnorePatterns": ["/node_modules/", "/test/mocha", "/cfl-front", "/caring-child-daycare", "/model"],
   "collectCoverage": true,
   "testEnvironment": "node",
   "testURL": "http://localhost/",
-  "roots": ["<rootDir>/test"],
-  "moduleFileExtensions": [
-    "js",
-    "json",
-    "jsx",
-    "ts",
-    "tsx"
-  ],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  }
+  "testRegex": "./test/jest/.*.js$",
+  "roots": ["<rootDir>/test/jest/"]
 }

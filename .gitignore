@@ -106,9 +106,3 @@ dist
 # Frontend
 cfl-front
 caring-child-daycare
-
-.DS_Store
-package-lock.json
-
-codeclimate.html
-build
