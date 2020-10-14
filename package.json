@@ -35,6 +35,7 @@
   },
   "author": "Rhayven <codingforllamas@gmail.com>",
   "dependencies": {
+    "@sendgrid/mail": "^7.2.6",
     "bcryptjs": "latest",
     "bluebird": "latest",
     "body-parser": "latest",
