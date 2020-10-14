@@ -25,14 +25,6 @@ describe('Index test', () => {
       .set('authorization', 'Bearer ');
     expect(r.status).toBe(200);
   });
-  it('should return status 200 when /daycare/', async () => {
-    r = await agent
-      .get('/daycare/')
-      .set({
-        origin: allowedUrl,
-      });
-    expect(r.status).toBe(200);
-  });
   it('should return 500 error', async () => {
     r = await agent
       .delete('/bogus')
