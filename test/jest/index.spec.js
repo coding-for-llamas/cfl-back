@@ -6,23 +6,31 @@ const AllowUrl = JSON.parse(process.env.AllowUrl);
 
 describe('Index test', () => {
   let allowedUrl, r, server, agent;
-  beforeAll((done) => {
+  beforeAll(() => new Promise((done) => {
     server = app.listen(7000, (err) => {
       if (err) return done(err);
       agent = request.agent(server);
       return done();
     });
-  });
-  beforeEach((done) => {
+  }));
+  beforeEach(() => new Promise((done) => {
     [allowedUrl] = AllowUrl.urls;
     done();
-  });
-  afterAll((done) => server && server.close(done));
+  }));
+  afterAll(() => new Promise((done) => server && server.close(done)));
   it('should return status 200 when use -> app.get', async () => {
     r = await agent
-      .get('/anyrul')
+      .get('/anyurl')
       .set({ origin: allowedUrl })
       .set('authorization', 'Bearer ');
+    expect(r.status).toBe(200);
+  });
+  it('should return status 200 when /daycare/', async () => {
+    r = await agent
+      .get('/daycare/')
+      .set({
+        origin: allowedUrl,
+      });
     expect(r.status).toBe(200);
   });
   it('should return 500 error', async () => {
