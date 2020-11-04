@@ -1,14 +1,12 @@
-require('dotenv').config();
 import request from 'supertest';
-import app from '../../src/index';
+import app from '../src/index';
 
 const AllowUrl = JSON.parse(process.env.AllowUrl || '{}');
 
 describe('Index test', () => {
   let allowedUrl, r, server, agent;
   beforeAll((done) => {
-    server = app.listen(7000, (err: any) => {
-      if (err) return done(err);
+    server = app.listen(7000, () => {
       agent = request.agent(server);
       return done();
     });
@@ -20,7 +18,14 @@ describe('Index test', () => {
   afterAll((done) => server && server.close(done));
   it('should return status 200 when use -> app.get', async () => {
     r = await agent
-      .get('/anyrul')
+      .get('/anyUrl')
+      .set({ origin: allowedUrl })
+      .set('authorization', 'Bearer ');
+    expect(r.status).toBe(200);
+  });
+  it('should return status 200 when use -> app.get at root', async () => {
+    r = await agent
+      .get('/')
       .set({ origin: allowedUrl })
       .set('authorization', 'Bearer ');
     expect(r.status).toBe(200);

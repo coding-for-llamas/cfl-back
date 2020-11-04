@@ -1,7 +1,11 @@
+import sgMail from '@sendgrid/mail';
+
 const debug = require('debug')('cfl-back:InquiryController');
-const sgMail = require('@sendgrid/mail');
 
 class InquiryController {
+
+  sgMail: any;
+
   constructor() {
     this.sgMail = sgMail;
   }
@@ -25,4 +29,5 @@ class InquiryController {
     return this.sendGridEmail(JSON.stringify(req.body), 'codingforllamas@gmail.com', 'inquiry', res);
   }
 }
-module.exports = InquiryController;
+
+export default InquiryController;
