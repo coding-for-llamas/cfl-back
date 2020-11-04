@@ -34,9 +34,11 @@ ratings:
   paths:
   - "**.js"
   - "**.jsx"
+  - "*.ts"
 exclude_patterns:
 - "test/"
 - "**/node_modules/"
 - "coverage/"
 - "cfl-front/"
 - "caring-child-daycare/"
+- "build"

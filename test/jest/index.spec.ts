@@ -1,26 +1,26 @@
 require('dotenv').config();
-const request = require('supertest');
-const app = require('../../index');
+import request from 'supertest';
+import app from '../../src/index';
 
-const AllowUrl = JSON.parse(process.env.AllowUrl);
+const AllowUrl = JSON.parse(process.env.AllowUrl || '{}');
 
 describe('Index test', () => {
   let allowedUrl, r, server, agent;
-  beforeAll(() => new Promise((done) => {
-    server = app.listen(7000, (err) => {
+  beforeAll((done) => {
+    server = app.listen(7000, (err: any) => {
       if (err) return done(err);
       agent = request.agent(server);
       return done();
     });
-  }));
-  beforeEach(() => new Promise((done) => {
+  });
+  beforeEach((done) => {
     [allowedUrl] = AllowUrl.urls;
     done();
-  }));
-  afterAll(() => new Promise((done) => server && server.close(done)));
+  });
+  afterAll((done) => server && server.close(done));
   it('should return status 200 when use -> app.get', async () => {
     r = await agent
-      .get('/anyurl')
+      .get('/anyrul')
       .set({ origin: allowedUrl })
       .set('authorization', 'Bearer ');
     expect(r.status).toBe(200);
