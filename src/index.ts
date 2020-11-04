@@ -54,11 +54,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 routes(app);
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.normalize(path.join(__dirname, '../cfl-front/dist/index.html')));
-});
-app.get('/daycare/*', (req, res) => {
-  res.sendFile(path.normalize(path.join(__dirname, '../caring-child-daycare/dist/index.html')));
 });
 /* istanbul ignore next */
 app.use((err: any, req, res: any) => {
