@@ -1,13 +1,18 @@
-const debug = require('debug')('cfl-back:InquiryController');
-const sgMail = require('@sendgrid/mail');
+import sgMail from '@sendgrid/mail';
+import Debug from 'debug';
+
+const debug = Debug('cfl-back:InquiryController');
 
 class InquiryController {
+  sgMail: any;
+
   constructor() {
     this.sgMail = sgMail;
   }
 
-  sendGridEmail(bodyhtml, toemail, subjectline, res) {
-    this.sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  sendGridEmail(bodyhtml: string, toemail: string, subjectline: string,
+    res: any): any {
+    this.sgMail.setApiKey(process.env.SENDGRID_API_KEY || /* istanbul ignore next */'');
     const msg = {
       to: toemail,
       from: 'user-service@codingforllamas.com',
@@ -20,9 +25,10 @@ class InquiryController {
     return res.status(200).json({ message: 'email sent' });
   }
 
-  handleInquiry(req, res) {
+  handleInquiry(req: any, res: any): any {
     debug(req.body);
     return this.sendGridEmail(JSON.stringify(req.body), 'codingforllamas@gmail.com', 'inquiry', res);
   }
 }
-module.exports = InquiryController;
+
+export default InquiryController;

@@ -1,33 +1,33 @@
 {
   "name": "cfl-back",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Coding for Llamas backend",
-  "main": "index.js",
+  "main": "index.ts",
   "engines": {
-    "node": ">14.3.0"
+    "node": ">14.13.0"
   },
   "files": [
-    "lib/",
     "model/",
-    "auth/",
-    "config.js",
-    "routes.js"
+    "config.ts",
+    "routes.ts"
   ],
   "license": "MIT",
   "scripts": {
     "cc": "codeclimate analyze -f html > codeclimate.html",
-    "start:debug": "DEBUG=cfl-back:* nodemon index.js",
-    "postinstall": "./postinstallcflFront.sh && ./postinstallcaringChildDaycare.sh",
-    "installglobals": "yarn global add npm@latest",
-    "dev": "nodemon index.js",
-    "build:prod": "(cd cfl-front || exit; npm start -- build)",
-    "start": "node index.js",
-    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install",
+    "rmrf": "rm -rf build && rm -rf cfl-front && rm -rf caring-child-daycare && rm -rf coverage",
+    "start": "node build/index.js",
+    "start:debug": "concurrently \"yarn ts-start\" \"tsc -w\"",
     "node:debug": "node --inspect-brk index.js",
-    "test": "eslint . && rm -rf coverage && npm run test:jest",
-    "test:lint": "eslint . --fix",
-    "test:local": "eslint . --fix && rm -rf coverage && yarn test:jest && yarn cc",
-    "test:jest": "cross-env NODE_ENV=test && jest --no-cache --config jest.config.json --notify --detectOpenHandles --forceExit"
+    "ts-start": "DEBUG=cfl-back:* nodemon build/index.js",
+    "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
+    "build:prod": "concurrently \"(cd cfl-front || exit; npm start -- build)\" \"(cd caring-child-daycare || exit; npm start -- build)\"",
+    "postinstall": "yarn rmrf && tsc && yarn build:front",
+    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install",
+    "installglobals": "yarn global add npm@latest",
+    "test": "eslint ./src && rm -rf coverage && npm run test:jest",
+    "test:lint": "eslint ./src --fix",
+    "test:local": "yarn test:lint && rm -rf coverage && yarn test:jest && yarn cc",
+    "test:jest": "jest --no-cache --config jest.config.json --runInBand --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
@@ -35,9 +35,16 @@
   },
   "author": "Rhayven <codingforllamas@gmail.com>",
   "dependencies": {
-    "@sendgrid/mail": "^7.2.6",
+    "@sendgrid/mail": "latest",
+    "@types/bcryptjs": "latest",
+    "@types/cors": "latest",
+    "@types/debug": "latest",
+    "@types/express": "latest",
+    "@types/express-sslify": "latest",
+    "@types/helmet": "latest",
+    "@types/mongoose": "latest",
+    "@types/morgan": "latest",
     "bcryptjs": "latest",
-    "bluebird": "latest",
     "body-parser": "latest",
     "cors": "latest",
     "cross-env": "latest",
@@ -51,14 +58,22 @@
     "mongoose": "latest",
     "morgan": "latest",
     "nodemon": "latest",
-    "superagent": "latest"
+    "superagent": "latest",
+    "typescript": "latest"
   },
   "devDependencies": {
+    "@types/jest": "latest",
+    "@types/supertest": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "concurrently": "latest",
     "eslint": "latest",
     "eslint-config-airbnb": "latest",
+    "eslint-config-airbnb-typescript": "latest",
     "eslint-plugin-es": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jest": "latest",
+    "eslint-plugin-json": "latest",
     "eslint-plugin-jsx-a11y": "latest",
     "eslint-plugin-node": "latest",
     "eslint-plugin-react": "latest",
@@ -66,6 +81,7 @@
     "eslint-plugin-security": "latest",
     "jest": "latest",
     "nodemon": "latest",
-    "supertest": "latest"
+    "supertest": "latest",
+    "ts-jest": "latest"
   }
 }
