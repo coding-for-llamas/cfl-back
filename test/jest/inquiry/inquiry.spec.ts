@@ -3,7 +3,7 @@ import app from '../../../src/index';
 
 describe('Inquiry Router', () => {
   afterAll(async () => {
-    await new Promise((resolve) => setTimeout(() => resolve(), 500));
+    await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
   });
 
   // r = request
