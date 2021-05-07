@@ -6,13 +6,13 @@ const AllowUrl = JSON.parse(process.env.AllowUrl || '{}');
 
 describe('Index test', () => {
   let allowedUrl: any, r: { status: any; }, server: Server, agent: request.SuperAgentTest;
-  beforeAll(() => new Promise((done) => {
+  beforeAll(() => new Promise<void>((done) => {
     server = app.listen(7000, () => {
       agent = request.agent(server);
       return done();
     });
   }));
-  beforeEach(() => new Promise((done) => {
+  beforeEach(() => new Promise<void>((done) => {
     [allowedUrl] = AllowUrl.urls;
     done();
   }));
