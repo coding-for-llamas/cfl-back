@@ -24,7 +24,7 @@ jobs:
             rm google-chrome.deb
       - run:
           name:        Test install
-          command:     'yarn install'
+          command:     'yarn cleaninstall'
       - run:
           name:        run all tests
           command:     |
