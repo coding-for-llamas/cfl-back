@@ -29,5 +29,5 @@ fi
 
 (
 cd caring-child-daycare;
-yarn install;
+yarn cleaninstall;
 )
