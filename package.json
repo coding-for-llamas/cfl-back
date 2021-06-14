@@ -58,6 +58,7 @@
     "moment": "latest",
     "mongoose": "latest",
     "morgan": "latest",
+    "node-notifier": "^10.0.0",
     "nodemon": "latest",
     "superagent": "latest",
     "typescript": "latest"
