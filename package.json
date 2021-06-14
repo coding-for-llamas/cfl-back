@@ -4,7 +4,7 @@
   "description": "Coding for Llamas backend",
   "main": "index.ts",
   "engines": {
-    "node": "15.14.0"
+    "node": ">=16.2.0"
   },
   "files": [
     "model/",
@@ -58,6 +58,7 @@
     "moment": "latest",
     "mongoose": "latest",
     "morgan": "latest",
+    "node-notifier": "^10.0.0",
     "nodemon": "latest",
     "superagent": "latest",
     "typescript": "latest"
