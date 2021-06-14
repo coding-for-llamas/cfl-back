@@ -22,8 +22,14 @@ const app = express();
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'master') app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use('/daycare', express.static(path.normalize(path.join(__dirname, '../caring-child-daycare/dist'))));
+app.get('/daycare/*', (req, res) => {
+  res.sendFile(path.normalize(path.join(__dirname, '../caring-child-daycare/dist/index.html')));
+});
 app.use('/', express.static(path.normalize(path.join(__dirname, '../cfl-front/dist'))));
-app.use('/daycare/', express.static(path.normalize(path.join(__dirname, '../caring-child-daycare/dist'))));
+app.get('/*', (req, res) => {
+  res.sendFile(path.normalize(path.join(__dirname, '../cfl-front/dist/index.html')));
+});
 app.use(cors(corsOptions));
 let mongoDbUri: any = process.env.MONGO_DB_URI;
 /* istanbul ignore else */
@@ -54,9 +60,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 routes(app);
-app.get('*', (req, res) => {
-  res.sendFile(path.normalize(path.join(__dirname, '../cfl-front/dist/index.html')));
-});
 /* istanbul ignore next */
 app.use((err: any, req, res: any) => {
   res.status(err.status || 500)
