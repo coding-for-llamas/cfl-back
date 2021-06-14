@@ -27,8 +27,7 @@
     "test": "eslint ./src && rm -rf coverage && npm run test:jest",
     "test:lint": "eslint ./src --fix",
     "test:local": "yarn test:lint && rm -rf coverage && yarn test:jest && yarn cc",
-    "test:jest": "jest --no-cache --config jest.config.json --runInBand --detectOpenHandles --forceExit",
-    "heroku-prebuild": "npm install --dev"
+    "test:jest": "jest --no-cache --config jest.config.json --runInBand --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
