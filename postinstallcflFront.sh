@@ -30,5 +30,4 @@ fi
 (
 cd cfl-front;
 npm install;
-npm start build;
 )

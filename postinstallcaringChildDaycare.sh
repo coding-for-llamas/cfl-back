@@ -30,5 +30,4 @@ fi
 (
 cd caring-child-daycare;
 npm install;
-npm start build;
 )
