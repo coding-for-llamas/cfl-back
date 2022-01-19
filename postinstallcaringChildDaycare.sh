@@ -2,7 +2,7 @@
 
 set -e
 
-BRANCH=dev
+BRANCH=main
 
 if [[ $BUILD_BRANCH != "main" ]];
 then
@@ -29,5 +29,5 @@ fi
 
 (
 cd caring-child-daycare;
-yarn cleaninstall;
+npm install;
 )

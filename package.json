@@ -1,32 +1,34 @@
 {
   "name": "cfl-back",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Coding for Llamas backend",
   "main": "index.ts",
   "engines": {
-    "node": "16.11.1"
+    "node": ">=16.13.0 <17"
   },
   "files": [
+    "lib/",
     "model/",
-    "config.ts",
-    "routes.ts"
+    "auth/",
+    "config.js",
+    "routes.js"
   ],
   "license": "MIT",
   "scripts": {
     "cc": "codeclimate analyze -f html > codeclimate.html",
     "rmrf": "rm -rf build && rm -rf cfl-front && rm -rf caring-child-daycare && rm -rf coverage",
     "start": "node build/index.js",
-    "start:debug": "concurrently \"yarn ts-start\" \"tsc -w\"",
+    "start:debug": "concurrently \"npm run ts-start\" \"tsc -w\"",
     "node:debug": "node --inspect-brk index.js",
     "ts-start": "DEBUG=cfl-back:* nodemon build/index.js",
     "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
     "build:prod": "concurrently \"(cd cfl-front || exit; npm start -- build)\" \"(cd caring-child-daycare || exit; npm start -- build)\"",
-    "postinstall": "yarn rmrf && tsc && yarn build:front",
-    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install",
-    "installglobals": "yarn global add npm@latest",
+    "postinstall": "npm run rmrf && tsc && npm run build:front",
+    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && npm run cache clean && npm install",
+    "installglobals": "npm install -g npm@latest && npm install -g snyk",
     "test": "eslint ./src && rm -rf coverage && npm run test:jest",
     "test:lint": "eslint ./src --fix",
-    "test:local": "yarn test:lint && rm -rf coverage && yarn test:jest && yarn cc",
+    "test:local": "npm run test:lint && rm -rf coverage && npm run test:jest && npm run cc",
     "test:jest": "jest --no-cache --config jest.config.json --runInBand --detectOpenHandles --forceExit"
   },
   "repository": {
@@ -37,13 +39,13 @@
   "dependencies": {
     "@sendgrid/mail": "latest",
     "@types/bcryptjs": "latest",
+    "@types/body-parser": "latest",
     "@types/cors": "latest",
     "@types/debug": "latest",
     "@types/express": "latest",
     "@types/express-sslify": "latest",
-    "@types/helmet": "latest",
-    "@types/mongoose": "latest",
     "@types/morgan": "latest",
+    "@types/superagent": "latest",
     "bcryptjs": "latest",
     "body-parser": "latest",
     "cors": "latest",
@@ -55,10 +57,10 @@
     "helmet": "latest",
     "jwt-simple": "latest",
     "moment": "latest",
-    "mongoose": "latest",
+    "mongoose": "^6.0.4",
     "morgan": "latest",
-    "node-notifier": "^10.0.0",
     "nodemon": "latest",
+    "snyk": "^1.667.0",
     "superagent": "latest",
     "typescript": "latest"
   },
@@ -67,7 +69,7 @@
     "@types/supertest": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "concurrently": "latest",
+    "concurrently": "^7.0.0",
     "eslint": "latest",
     "eslint-config-airbnb": "latest",
     "eslint-config-airbnb-typescript": "latest",
