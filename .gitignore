@@ -106,4 +106,9 @@ dist
 # Frontend
 cfl-front
 caring-child-daycare
+
+codeclimate.html
 build
+
+.yarn
+.yarnrc

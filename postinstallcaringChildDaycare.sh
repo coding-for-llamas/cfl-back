@@ -29,5 +29,6 @@ fi
 
 (
 cd caring-child-daycare;
-yarn cleaninstall;
+npm install;
+npm start build;
 )

@@ -1,33 +1,37 @@
 {
   "name": "cfl-back",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Coding for Llamas backend",
   "main": "index.ts",
   "engines": {
-    "node": "16.11.1"
+    "node": "16.13.2"
   },
   "files": [
+    "lib/",
     "model/",
-    "config.ts",
-    "routes.ts"
+    "auth/",
+    "config.js",
+    "routes.js"
   ],
   "license": "MIT",
   "scripts": {
-    "cc": "codeclimate analyze -f html > codeclimate.html",
     "rmrf": "rm -rf build && rm -rf cfl-front && rm -rf caring-child-daycare && rm -rf coverage",
-    "start": "node build/index.js",
-    "start:debug": "concurrently \"yarn ts-start\" \"tsc -w\"",
-    "node:debug": "node --inspect-brk index.js",
+    "start:debug": "rm -rf build && tsc && npm-run-all -p ts-start ts-watch",
+    "ts-watch": "tsc -w",
+    "cc": "codeclimate analyze -f html > codeclimate.html",
     "ts-start": "DEBUG=cfl-back:* nodemon build/index.js",
-    "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
-    "build:prod": "concurrently \"(cd cfl-front || exit; npm start -- build)\" \"(cd caring-child-daycare || exit; npm start -- build)\"",
-    "postinstall": "yarn rmrf && tsc && yarn build:front",
-    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install",
-    "installglobals": "yarn global add npm@latest",
+    "installglobals": "npm install -g npm@latest && npm install -g snyk",
+    "build:front": "postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
+    "rebuild:front": "postinstallcflFront.sh && postinstallcaringChildDaycare.sh && npm run build:prod",
+    "postinstall": "npm run rmrf && tsc && npm run build:front",
+    "build:prod": "cd cfl-front || exit; npm start -- build && cd caring-child-daycare || exit; npm start -- build",
+    "start": "node build/index.js",
+    "cleaninstall": "rm -rf yarn.lock && rm -rf node_modules && rm -rf package-lock.json && npm cache clean --force && npm install",
+    "node:debug": "node --inspect-brk index.js",
     "test": "eslint ./src && rm -rf coverage && npm run test:jest",
     "test:lint": "eslint ./src --fix",
-    "test:local": "yarn test:lint && rm -rf coverage && yarn test:jest && yarn cc",
-    "test:jest": "jest --no-cache --config jest.config.json --runInBand --detectOpenHandles --forceExit"
+    "test:local": "npm run test:lint && rm -rf coverage && npm run test:jest && npm run cc",
+    "test:jest": "jest --no-cache --config jest.config.json --runInBand --forceExit"
   },
   "repository": {
     "type": "git",
@@ -37,13 +41,13 @@
   "dependencies": {
     "@sendgrid/mail": "latest",
     "@types/bcryptjs": "latest",
+    "@types/body-parser": "latest",
     "@types/cors": "latest",
     "@types/debug": "latest",
     "@types/express": "latest",
     "@types/express-sslify": "latest",
-    "@types/helmet": "latest",
-    "@types/mongoose": "latest",
     "@types/morgan": "latest",
+    "@types/superagent": "latest",
     "bcryptjs": "latest",
     "body-parser": "latest",
     "cors": "latest",
@@ -55,10 +59,10 @@
     "helmet": "latest",
     "jwt-simple": "latest",
     "moment": "latest",
-    "mongoose": "latest",
+    "mongoose": "^6.0.4",
     "morgan": "latest",
-    "node-notifier": "^10.0.0",
     "nodemon": "latest",
+    "snyk": "^1.667.0",
     "superagent": "latest",
     "typescript": "latest"
   },
@@ -67,7 +71,6 @@
     "@types/supertest": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "concurrently": "latest",
     "eslint": "latest",
     "eslint-config-airbnb": "latest",
     "eslint-config-airbnb-typescript": "latest",
@@ -82,6 +85,7 @@
     "eslint-plugin-security": "latest",
     "jest": "latest",
     "nodemon": "latest",
+    "npm-run-all": "latest",
     "supertest": "latest",
     "ts-jest": "latest"
   }

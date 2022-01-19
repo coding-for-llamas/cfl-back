@@ -29,5 +29,6 @@ fi
 
 (
 cd cfl-front;
-yarn cleaninstall;
+npm install;
+npm start build;
 )

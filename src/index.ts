@@ -2,6 +2,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import Debug from 'debug';
 import express from 'express';
+import type { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
@@ -31,12 +32,10 @@ app.get('/*', (req, res) => {
   res.sendFile(path.normalize(path.join(__dirname, '../cfl-front/dist/index.html')));
 });
 app.use(cors(corsOptions));
-let mongoDbUri: any = process.env.MONGO_DB_URI;
+let mongoDbUri: string = process.env.MONGO_DB_URI || /* istanbul ignore next */'';
 /* istanbul ignore else */
-if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB;
-mongoose.connect(mongoDbUri, {
-  useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true,
-});
+if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB || /* istanbul ignore next */'';
+mongoose.connect(mongoDbUri);
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {
@@ -61,10 +60,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 routes(app);
 /* istanbul ignore next */
-app.use((err: any, req, res: any) => {
-  res.status(err.status || 500)
-    .json({ message: err.message, error: err });
-});
+app.use((err:{ status:number, message:string }, _req:Request, res: Response) => res.status(500).json({ message: err.message, error: err }));
 /* istanbul ignore if */if (process.env.NODE_ENV !== 'test') {
   const port = process.env.PORT || 7000;
   app.listen(port, async () => {
