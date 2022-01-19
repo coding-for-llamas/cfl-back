@@ -4,7 +4,7 @@
   "description": "Coding for Llamas backend",
   "main": "index.ts",
   "engines": {
-    "node": ">=16.13.0 <17"
+    "node": "16.13.2"
   },
   "files": [
     "lib/",
