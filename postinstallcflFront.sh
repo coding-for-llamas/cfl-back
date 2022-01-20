@@ -30,6 +30,4 @@ fi
 (
 cd cfl-front;
 npm install;
-npm run build:prod;
-exit
 )
