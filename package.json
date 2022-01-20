@@ -23,7 +23,7 @@
     "installglobals": "npm install -g npm@latest && npm install -g snyk",
     "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
     "build:front:windows": "postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
-    "postinstall": "npm run rmrf && tsc && npm run build:front:windows",
+    "postinstall": "npm run rmrf && tsc && npm run build:front",
     "rebuild:front": "./postinstallcflFront.sh && ./postinstallcaringChildDaycare.sh && npm run build:prod",
     "build:cfl": "(cd cfl-front || exit; npm start -- build)",
     "build:ccd": "(cd caring-child-daycare || exit; npm start -- build",
