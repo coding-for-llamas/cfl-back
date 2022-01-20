@@ -23,10 +23,10 @@ const app = express();
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'master') app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use('/daycare', express.static(path.normalize(path.join(__dirname, '../caring-child-daycare/dist'))));
-app.get('/daycare/*', (req, res) => {
-  res.sendFile(path.normalize(path.join(__dirname, '../caring-child-daycare/dist/index.html')));
-});
+// app.use('/daycare', express.static(path.normalize(path.join(__dirname, '../caring-child-daycare/dist'))));
+// app.get('/daycare/*', (req, res) => {
+//   res.sendFile(path.normalize(path.join(__dirname, '../caring-child-daycare/dist/index.html')));
+// });
 app.use('/', express.static(path.normalize(path.join(__dirname, '../cfl-front/dist'))));
 app.get('/*', (req, res) => {
   res.sendFile(path.normalize(path.join(__dirname, '../cfl-front/dist/index.html')));
