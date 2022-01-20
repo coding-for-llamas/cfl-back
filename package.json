@@ -21,7 +21,7 @@
     "cc": "codeclimate analyze -f html > codeclimate.html",
     "ts-start": "DEBUG=cfl-back:* nodemon build/index.js",
     "installglobals": "npm install -g npm@latest && npm install -g snyk",
-    "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test &&& ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
+    "build:front": "./postinstallcflFront.sh && rm -rf ./cfl-front/src && rm -rf ./cfl-front/test && ./postinstallcaringChildDaycare.sh && rm -rf ./caring-child-daycare/src && rm -rf ./caring-child-daycare/test",
     "postinstall": "npm run rmrf && tsc && npm run build:front",
     "rebuild:front": "./postinstallcflFront.sh && npm run build:prod && ./postinstallcaringChildDaycare.sh && npm run build:prod",
     "build:prod": "(cd cfl-front || exit; npm start -- build) && (cd caring-child-daycare || exit; npm start -- build)",
