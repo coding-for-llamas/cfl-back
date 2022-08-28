@@ -62,7 +62,7 @@
     "morgan": "latest",
     "nodemon": "latest",
     "snyk": "^1.667.0",
-    "superagent": "latest",
+    "superagent": "^8.0.0",
     "typescript": "latest"
   },
   "devDependencies": {
