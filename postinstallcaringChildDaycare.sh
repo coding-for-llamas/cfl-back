@@ -10,7 +10,7 @@ then
 fi
 
 if [ ! -d caring-child-daycare ]; then
-    (git clone https://github.com/coding-for-llamas/caring-child-daycare.git)
+    (git clone https://github.com/coding-for-llamas/caring-child-daycare)
 fi
 
 (
@@ -30,5 +30,4 @@ fi
 (
 cd caring-child-daycare;
 npm install;
-npm start build
 )

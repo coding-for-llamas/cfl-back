@@ -2,15 +2,15 @@
 
 set -e
 
-BRANCH=main
+BRANCH=master
 
-if [[ $BUILD_BRANCH != "main" ]];
+if [[ $BUILD_BRANCH != "master" ]];
 then
     BRANCH=dev
 fi
 
 if [ ! -d cfl-front ]; then
-    (git clone https://github.com/coding-for-llamas/cfl-front.git)
+    (git clone https://github.com/coding-for-llamas/cfl-front)
 fi
 
 (
@@ -30,5 +30,4 @@ fi
 (
 cd cfl-front;
 npm install;
-npm start build
 )
