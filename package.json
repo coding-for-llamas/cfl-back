@@ -61,7 +61,7 @@
     "mongoose": "^6.0.4",
     "morgan": "latest",
     "nodemon": "latest",
-    "snyk": "^1.667.0",
+    "snyk": "^1.996.0",
     "superagent": "^8.0.0",
     "typescript": "latest"
   },
